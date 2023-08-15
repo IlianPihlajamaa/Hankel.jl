@@ -172,6 +172,7 @@ function besselj_zero_init(nu, n)
     T = float(eltype(nu))
     iszero(nu) && return T(GSL.sf_bessel_zero_J0(n))
     isone(nu) && return T(GSL.sf_bessel_zero_J1(n))
+    nu < zero(nu) && return T(FunctionZeros.besselj_zero(nu, n))
     return T(GSL.sf_bessel_zero_Jnu(nu, n))
 end
 
